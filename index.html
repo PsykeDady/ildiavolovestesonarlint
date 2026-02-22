@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Code Quality e Code Style</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-background-image="assets/blwallpaper_dark.png" data-background-size="contain"
+				data-background-repeat="no-repeat">
+					<script type="text/template">
+						&nbsp;  
+						A cura di Davide Galati (in arte PsykeDady)<!-- .element class="text-start h5 text-white-50 m-5"-->  
+						davide.galati@brainylabs.it<!-- .element class="text-start h5 text-white-50 m-5"-->  
+						psdady@msn.com<!-- .element class="text-start h5 text-white-50 m-5"-->  
+					</script>
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Link e info presentazione
+
+					- Potete trovare la presentazione all'indirizzo
+					[ildiavolovestesonarlint.surge.sh](http://ildiavolovestesonarlint.surge.sh)
+					- Con il tasto ESC avrete una panoramica di tutte le slide (*non fatevi spoiler però!*)
+					- Aggiungendo [?print-pdf](http://ildiavolovestesonarlint.surge.sh?print-pdf) all'indirizzo potrete avere una
+					versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).
+					- La presentazione si estende in *orizzontale* ma anche in **verticale**! Fare attenzione alle frecce
+					**a sinistra in basso**.
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Il fatto che parta non è tutto</h3>
+					<section data-markdown class="small">
+					- Se un codice non ha bug è un bene.
+					- Ma anche un progetto perfetto, se non è leggibile o mantenibile, lo possiamo buttare via.
+					- Esistono quindi delle buone pratiche per qualità e stile del codice.
+					</section>
+					<section data-markdown class="small">
+						- Esiste un libro, How To Write Unmaintainable Code, che ironicamente spiega come scrivere codice non mantenibile, ma è un buon punto di partenza per capire cosa non fare.
+						![](assets/unmaintainable_code.png)
+					</section>
+					<section data-markdown class="small">
+						![](assets/unmaintainable_code2.png)
+					</section>
+					<section data-markdown class="small">
+						### Code Style 
+						- Editor Config
+						- prettier
+						- checkstyle
+						- Linter (Lato style)
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### Code Quality 
+						- Linter (Lato quality)
+						- Coverage
+						- SonarQube 
+						- esempi: Sonarlint
+						- esempi: ShellCheck
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Editor Config</h3>
+					<section data-markdown class="small">
+					- Editor Config è un file di configurazione che permette di definire regole di formattazione del codice, come indentazione, spaziatura, fine linea, ecc.
+					- Anche se non è uno standard de-facto, è supportato da molti editor e IDE.
+					- Alcuni IDE applicano automaticamente le regole di Editor Config quando si salva un file, garantendo coerenza nel formato del codice (senza l'intervento manuale del programmatore).
+					- evita differenze inutili nei commit o strani conflitti
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Esempio di file .editorconfig
+						```config
+						root = true
+						
+						[*]
+						end_of_line = lf
+						insert_final_newline = true
+						tab_width = 4
+						indent_style = space
+						indent_size = 4
+						
+						# Override per file JavaScript e CSS
+						[*.{js,css}]
+						end_of_line = lf
+						insert_final_newline = true
+						indent_style = tab
+						indent_size = 4
+						```
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Prettier, ma anche Uglifier</h3>
+					<section data-markdown class="small">
+					- Per Prettier si intende un formattatore di codice, sia a livello di categoria che come software a specifico. 
+					- Supporta molti linguaggi e può essere integrato in molti editor e IDE.
+					- Molto utilizzato soprattutto per Javascript e json.
+					- Esiste anche il concetto di "prettyprinting" nei vari linguaggi per stampare log o dati in modo più leggibile, ad esempio con indentazione e spaziatura tramite istruzioni.
+					</section>
+					<section data-markdown class="small">
+					- Prima di Prettier 
+					```json
+					{"nome":"Davide","cognome":"Galati","eta":34}
+					```
+					</section>
+					<section data-markdown class="small">
+						<script type="text/template">
+							- Dopo Prettier
+							```json
+							{
+								"nome": "Davide",
+								"cognome": "Galati",
+								"eta": 18
+							}
+							```
+							<sup style="font-size: 0.4em;">ti rende così bello che ti abbassa l'età</sup>
+						</script>
+					</section>
+					<section data-markdown class="small">
+						- Rendere più bello un codice tuttavia, soprattutto nei linguaggi interpretati, degrada le prestazioni e occupa spazio.
+						- Esistono quindi dei software che fanno l'opposto, lo rendono "illegibile" ma più performante, come Uglifier per Javascript.
+						- In questo caso, però, è importante mantenere una versione "leggibile" del codice, magari con un suffisso come `.min.js`, per poterlo manutenere in futuro.
+						- L'utilizzo di un Uglifier è in genere integrato nei processi di build per versioni di produzione.
+					</section>
+					<section data-markdown class="small">
+						- Prima di Uglifier
+						```javascript
+							function calcolaSomma(a, b) {
+								return a + b;
+							}
+						```
+						- Dopo Uglifier
+						```javascript
+							function a(a,b){return a+b}
+						```
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						- Lo devo leggere, mantenere, versionare? Prettifier
+						- Lo deve scaricare il browser? Uglifier
+						- Domanda: Installi Bootstrap ...
+							- bootstrap.js
+							- bootstrap.min.js
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Checkstyle</h3>
+					<section data-markdown class="small">
+						- Cambiamo paradigma: andiamo su un tool che rende lo stile obbligatorio, non solo suggerito.
+						- Checkstyle è uno strumento per il linguaggio Java, consente di impostare delle regole di stile che il programmatore DEVE seguire.
+						- Permette di definire delle regole personalizzate e garantire una metodologia standard all'interno di un azienda.
+						- Può essere integrato sia nel processo di build (attraverso maven ad esempio) che in molti IDE, per segnalare immediatamente eventuali violazioni delle regole.
+					</section>
+					<section data-markdown class="small">
+						- Si parte normalmente dalle configurazioni del [sito ufficiale](https://checkstyle.sourceforge.io)
+						- Nella documentazione è possibile trovare molte regole predefinite, ma è anche possibile crearne di personalizzate.
+						- Una volta trovata la giusta configurazione è importante condividerle e conservarle.
+					</section>
+					<section data-markdown class="small">
+						<script type="text/template">
+							### Esempio di (pezzi di) file checkstyle.xml
+							```xml
+
+							<module name="Checker">
+
+								<property name="charset" value="UTF-8"/>
+									<!-- lunghezza massima delle righe -->
+								<module name="LineLength">
+								<property name="fileExtensions" value="java"/>
+								<property name="max" value="100"/>
+								</module>
+								<!-- obbliga le graffe negli if -->
+								<module name="NeedBraces">
+								<property name="tokens"
+										value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
+								</module>
+
+								<!-- naming delle classi -->
+								<module name="TypeName">
+									<property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+									<property name="tokens" value="CLASS_DEF"/>
+								</module>
+
+								<!-- spazio attorno gli operatori -->
+								<module name="WhitespaceAround">
+									<property name="tokens"
+										value="ASSIGN, PLUS, MINUS, DIV, STAR, EQUAL, NOT_EQUAL"/>
+								</module>
+							</module>
+							```
+						</script>
+					</section>
+					<section data-markdown class="small">
+						### Esempio di violazione di checkstyle
+						```java
+							// Violazione naming classi
+							public class myClass {
+								public static void main(String[] args) {
+									// Violazione spazi attorno agli operatori
+									int a=5+3;
+									// Violazione parentesi negli if
+									if(a>5)
+										System.out.println("a è maggiore di 5");
+									// Violazione lunghezza massima delle righe
+									System.out.println("Questa è una riga molto lunga che supera i 100 caratteri e quindi viola la regola di checkstyle");		
+								}
+							}
+						```
+					</section>
+
+					<section data-markdown class="small">
+						### Esempio corretto 
+						```java
+							public class MyClass {
+								public static void main(String[] args) {
+									int a = 5 + 3;
+									if (a > 5) {
+										System.out.println("a è maggiore di 5");
+									}
+									String longLine =
+									"Questa è una riga "
+										+ "molto lunga che supera i 100 caratteri "
+										+ "ma non viola la regola di Checkstyle "
+										+ "perché è stata spezzata in più righe";
+								}
+							}
+						```
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### Checkstyle non è opzionale
+						
+						- Non è un suggerimento
+						- Non è gusto personale
+						- Non è opinione
+						- È una regola automatica.
+						- Se non rispetti le regole: La build FALLISCE.
+						- (Attento ad usarla in combo con altri strumenti, ad esempio SonarQube, per evitare di avere troppe regole che si sovrappongono e confondono il programmatore)
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Linter</h3>
+					<section data-markdown class="small">
+					- Usciamo dal mondo del solo stile. Il linter rappresenta quella linea di confine che tutela sia stile che qualità.
+					- Il Linter è uno strumento che analizza il codice sorgente per identificare errori, problemi di stile e potenziali bug.
+					- Esistono linters specifici per ogni linguaggio di programmazione, sono di norma integrati negli IDE.
+				</section>
+				<section data-markdown class="small">
+					- "generalmente" non si scarica un linter, al più si installa un language server che include anche un linter, ma è possibile anche scaricare linters standalone.
+					- Markdown linter, shellcheck, eslint, pylint, sono solo alcuni esempi di linters per diversi linguaggi.
+					- Il linter da solo non garantisce che non ci siano errori.
+					</section>
+					<section data-markdown class="small">
+						### Cosa controlla un Linter?
+
+						- Errori sintattici
+						- Problemi di stile
+						- Pattern pericolosi
+					</section>
+					<section data-markdown class="small">
+						### Esempio errore java
+						```java
+						public class Example1 {
+
+							public static void main(String[] args) {
+
+								int x = 5   
+								// Syntax error: ';' expected
+
+								int number = "dieci";
+								// Type mismatch: cannot convert from String to int
+
+								String a = "ciao";
+								String b = "ciao";
+								if (a == b) {
+								// Warning: Strings should be compared using .equals(), not '=='
+									System.out.println("Uguali");
+								}
+
+								int unusedValue = 42;
+								// Warning: The value of the local variable 'unusedValue' is not used
+							}
+						}							
+						```
+					</section>
+					<section data-markdown class="small">
+						### Il linter non garantisce l'assenza di errori
+						```java
+						public class ExampleRuntimeErrors {
+							public static void main(String[] args) {
+								int x = 10;
+								int y = getNumber();
+
+								int result = x / y;
+								// Nessun errore di linting
+								// Nessun errore di compilazione
+								// Errore a runtime: java.lang.ArithmeticException: / by zero
+
+								String name = getName();
+
+								System.out.println(name.length());
+								// Nessun errore di linting
+								// Nessun errore di compilazione
+								// Errore a runtime: java.lang.NullPointerException
+							}
+							public static int getNumber() {
+								return 0;
+							}
+							public static String getName() {
+								return null;
+							}
+						}
+						```
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						- La differenza nell'utilizzo di un editor di testo da un IDE è dato dall'integrazione di strumenti come il linter.
+						- Il linter precede il compilatore e ti evita la perdita di tempo nella compilazione di errori evidenti
+						- Tuttavia, nelle prime fasi di sviluppo, sconsiglio l'uso
+						- Sbagliare insegna anche a capire.
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Test</h3>
+					<section data-markdown class="small">
+						- 
+					</section>
+					<section data-markdown class="small">
+					Vai sotto
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						Vai a destra
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Coverage</h3>
+					<section data-markdown class="small">
+						- Per parlare di Coverage dovremmo parlare prima test.
+						- I test sono fondamentali per garantire la qualità del codice, ma non basta scriverli, bisogna anche assicurarsi che siano efficaci.
+						- Esistono diversi tipi di test, come unit test, integration test, end-to-end test, ecc., ognuno con un obiettivo specifico.
+						- La coverage è una metrica che misura la percentuale di codice sorgente che viene eseguita durante l'esecuzione dei test.
+					</section>
+					<section data-markdown class="small">
+					Vai sotto
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						Vai a destra
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Sonarqube</h3>
+					<section data-markdown class="small">
+					Vai sotto
+					</section>
+					<section data-markdown class="small">
+					Vai sotto
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						Vai a destra
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+					<h3>Esempi tool</h3>
+					<section data-markdown class="small">
+						### Sonarlint
+					</section>
+					<section data-markdown class="small">
+						### ShellCheck
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						Vai a destra
+					</section>
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					<h2>The End</h2>
+
+					<img src="assets/thanks.jpeg" alt="T.hanks">
+
+					<p>(T.hanks)</p>
+
+					<blockquote class="blockquote w-50 mx-auto">
+						<p class="mb-2 small text-light">Anche l'occhio vuole la sua parte! (anche se non parte)</p>
+						<footer class="blockquote-footer small mt-2"> D& G: Davide&Galati</footer>
+					</blockquote>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

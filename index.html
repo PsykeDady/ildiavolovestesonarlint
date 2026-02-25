@@ -346,14 +346,82 @@
 						data-background-size="contain" data-background-repeat="no-repeat">
 					<h3>Test</h3>
 					<section data-markdown class="small">
-						- 
+						- I test sono una delle armi più potenti degli sviluppatori.
+						- Proteggono dalle regressioni.
+						- Permettono di evolvere il codice senza paura.
+						- Automatizzano la verifica del comportamento.
+						- Un buon setup dei test (con adeguati mock realistici) consente di avere un ottima affidabilità sul risultato del test ed indipendenza da servizi o elementi esterni (dynamo, Aws)
+						- Se il test dipende dall'ambiente, non è un buon test
 					</section>
 					<section data-markdown class="small">
-					Vai sotto
+						```java
+						@BeforeAll
+						static void setup() {
+							CheckedAlertsRepository checkedAlertsRepository = Mockito.mock(CheckedAlertsRepository.class);
+							TTLRepository ttlRepository = Mockito.mock(TTLRepository.class);
+
+							Alert alertToBeChecked = Alert.builder()
+								.id(10543L)
+								.ruleCode("A4")
+								.customerCode("999999011")
+								.description("L alert consente di verificare l adeguatezza del cliente")
+								.creationDate(Date.valueOf("2023-10-01"))
+								.build();
+							checked = List.of(
+								Alert.builder()
+									.id(10386L)
+									.ruleCode("A1")
+									.customerCode("778046609")
+									.description(
+										"Rileva l'avvicinamento alla data di scadenza del questionario MiFID del Cliente. Esiti declinati in funzione del numero di giorni alla scadenza")
+									.creationDate(Date.valueOf("2023-10-01"))
+									.build(),
+								Alert.builder()
+									.id(10499L)
+									.ruleCode("A1")
+									.customerCode("999999019")
+									.description(
+										"Rileva l'avvicinamento alla data di scadenza del questionario MiFID del Cliente. Esiti declinati in funzione del numero di giorni alla scadenza")
+									.creationDate(Date.valueOf("2023-11-13"))
+									.build(),
+								alertToBeChecked);
+
+							Mockito.when(checkedAlertsRepository.listCheckedAlerts(Mockito.anyString())).thenReturn(checked);
+							Mockito.when(ttlRepository.getTTL(Mockito.anyString(), Mockito.anyString())).thenReturn(null);
+
+							Mockito.when(checkedAlertsRepository.checkAlert(Mockito.anyString(), Mockito.anyString(),
+								Mockito.any(), Mockito.anyLong())).thenReturn(alertToBeChecked);
+
+							QuarkusMock.installMockForType(checkedAlertsRepository, CheckedAlertsRepository.class);
+							QuarkusMock.installMockForType(ttlRepository, TTLRepository.class);
+						}
+						```
+					</section>
+					<section data-markdown class="small">
+						- I Test: 
+						```java
+						@Test
+						@SneakyThrows
+						void testPostCheckedWithoutCustomer() {
+							ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+
+							String jsonBody = ow.writeValueAsString(
+								Alert.builder().id(10543L).build());
+
+							given()
+								.header(new Header("Content-Type", APPLICATION_JSON)).body(jsonBody)
+								.when().post(BASEURL)
+								.then().statusCode(HttpURLConnection.HTTP_BAD_REQUEST);
+						}
+						```
 					</section>
 					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
-						data-background-size="contain" data-background-repeat="no-repeat">
-						Vai a destra
+					data-background-size="contain" data-background-repeat="no-repeat">
+						- Esistono varie suite di test 
+						- ELENCARE SUITE 
+						- non ne esiste una giusta e sbagliata, gusti e comodità 
+						- La tattica vincente è progettare i test prima ancora del codice 
+						- L'utilizzo dell'ATE aiuta molto
 					</section>
 				</section>
 

@@ -438,24 +438,49 @@
 						- Ci son diversi tipi di coverage:
 						- Line Coverage ovvero **quante righe** vengono eseguite
 						- Branch Coverage ovvero **quanti rami** decisionali vengono testati
-						- Method Coverage ovvero **quanti metodi** vengono chiamati
-						- Condition Coverage ovvero **quante condizioni** logiche vengono valutate
+						- Method, Class Coverage ovvero **quanti metodi e classi** vengono chiamati
+						- Condition Coverage ovvero **quante condizioni** logiche vengono valutate 
 					</section>
-					<section data-markdown class="small">
-						- Jacoco 
+					<section data-markdown class="small" >
+						<script type="text/template">
+						- Ci son ovviamente diversi tool per misurare la coverage, ad esempio Jacoco per Java.
+						- Basta inserire il plugin in maven 
+							```xml
+							<plugin>
+								<groupId>org.jacoco</groupId>
+								<artifactId>jacoco-maven-plugin</artifactId>
+								<version>0.8.11</version>
+								<executions>
+									<execution>
+										<goals>
+											<goal>prepare-agent</goal>
+										</goals>
+									</execution>
+									<execution>
+										<id>report</id>
+										<phase>test</phase>
+										<goals>
+											<goal>report</goal>
+										</goals>
+									</execution>
+								</executions>
+							</plugin>
+							```
+						</script>
 					</section>
 					<section class="small">
-						<img src="assets/jacoco.png" alt="Jacoco" style="height: 70vh;">
-					</section>
-					<section data-markdown class="small">
-						Vai sotto
-					</section>
-					<section data-markdown class="small">
-						Vai sotto
+						<ul>
+							<li>Dopo un <code>mvn clean test</code> è possibile trovare il report di Jacoco in <code>target/site/jacoco/index.html</code></li>
+						</ul>
+						<img src="assets/jacoco.png" alt="Jacoco" style="width: 100vw;">
 					</section>
 					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
-						data-background-size="contain" data-background-repeat="no-repeat">
-						Vai a destra
+					data-background-size="contain" class="small" data-background-repeat="no-repeat">
+						- I nomi delle metriche possono essere diversi.
+						- Nel report JaCoCo trovi: Instructions Coverage,Branch Coverage,Complexity (Cxty),Lines,Methods,Classes
+						- Istruction sarebbe la line coverage, ovvero quante istruzioni vengono eseguite, è la più importante.
+						- Branch è la branch coverage, ovvero quanti rami decisionali vengono testati.
+						- La complexity è simile alla condition coverage, ovvero quante condizioni logiche vengono valutate.
 					</section>
 				</section>
 
@@ -463,14 +488,79 @@
 						data-background-size="contain" data-background-repeat="no-repeat">
 					<h3>Sonarqube</h3>
 					<section data-markdown class="small">
-					Vai sotto
+						- SonarQube è una piattaforma di analisi statica del codice.
+						- Centralizza metriche di qualità, coverage e vulnerabilità.
+						- Si integra con CI/CD e con repository Git (puoi implementare meccanismi che bloccano merge o build se la severità delle issue è alta).
+						- Alcuni linters, come SonarLint, si basano sulle regole di SonarQube per fornire feedback in tempo reale durante la scrittura del codice.
 					</section>
 					<section data-markdown class="small">
-					Vai sotto
+						#### Cosa analizza SonarQube?
+
+						- Bug
+						- Vulnerabilità
+						- Code Smell (cattivo odore del codice, codice non errato ma non di qualità, tipo checkstyle)
+						- Coverage
+						- Duplicazione di codice
+						- Complessità
 					</section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					<section class="small">
+						<img src="assets/sonarqube_mivplus.png" alt="" style="width: 100vw;">
+					</section>
+					<section class="small">
+						<img src="assets/sonarqube_mivplus2.png" alt="" style="width: 100vw;">
+					</section>
+					<section data-markdown class="small">
+						- Il server di sonarqube deve essere installato e configurato.
+						- Una volta installato si può collegare la build al server (tramite maven oppure jenkins)
+						- Esistono regole generiche, ma è possibile anche crearne di personalizzate.
+					</section>
+					<section class="small" data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+						<script type="text/template">
+							- Config maven: 
+							```xml
+							<plugin>
+								<groupId>org.sonarsource.scanner.maven</groupId>
+								<artifactId>sonar-maven-plugin</artifactId>
+								<version>3.9.1.2184</version>
+							</plugin>	
+							```
+							- maven command 
+							```bash
+							mvn clean verify sonar:sonar -Dsonar.projectKey=nomeprogetto
+							-Dsonar.host.url=http://localhost:9000
+							-Dsonar.login=token
+							```
+							- Seguire le indicazioni dell'azienda e del reparto IT per una giusta integrazione.
+						</script>
+					</section>
+				</section>
+				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-						Vai a destra
+					<h3>An extra: Codacy </h3>
+					<section data-markdown class="small">
+						- Codacy è una piattaforma di analisi del codice che offre funzionalità simili a SonarQube, ma con un focus particolare sull'integrazione continua e sulla facilità d'uso.
+						- Con sede in Portogallo, non è molto diffusa, si lega bene a Github e soprattutto: ci lavora un amico :D 
+						- È una soluzione **cloud**, semplice da configurare.
+					</section>
+					<section data-markdown class="small">
+					- Codacy:
+						- SaaS (cloud)
+						- Setup rapido
+						- Integrazione GitHub immediata
+
+					- SonarQube:
+						- Installabile on-premise
+						- Più configurabile
+						- Più diffuso in ambito enterprise
+					- [Codacy vs SonarQube](https://www.codacy.com/blog/codacy-vs-sonarqube/)
+					</section>
+					<section class="small" data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+						data-background-size="contain" data-background-repeat="no-repeat">
+						- Codacy dimostra che esistono alternative a SonarQube, ma è importante valutare attentamente le esigenze del progetto e dell'azienda prima di scegliere una piattaforma di analisi del codice.
+						- Gratis per progetti open source, ma a pagamento per progetti privati (con prezzi che variano in base al numero di utenti e alla quantità di codice analizzato).
+						- Plugin con vscode
+						- [Pricing](https://www.codacy.com/pricing)
 					</section>
 				</section>
 
@@ -478,14 +568,26 @@
 						data-background-size="contain" data-background-repeat="no-repeat">
 					<h3>Esempi tool</h3>
 					<section data-markdown class="small">
-						### Sonarlint
+						#### Sonarlint
+						- SonarLint (oggi SonarQube for IDE su VSCode) è un'estensione per IDE che fornisce feedback in tempo reale sulla qualità del codice, basandosi sulle regole standard di SonarQube.
+						- Supporta vari linguaggi e IDE, come Java, JavaScript, Python, etc..
+						- può essere collegato ad un server di SonarQube per sincronizzare le regole e le issue, ma funziona anche in modalità standalone.
+						- Attivalo.
+					</section>
+					<section class="small">
+						<img src="assets/sonarlint_testUser.png" alt="" style="width: 100vw;">
 					</section>
 					<section data-markdown class="small">
-						### ShellCheck
+						#### ShellCheck
+						- ShellCheck è uno strumento di analisi statica per script shell, che aiuta a individuare errori comuni e potenziali problemi di sicurezza.
+						- Se lavori in bash, è un must have! 
+						- è possibile utilizzarlo da linea di comando ma anche integrarlo in editor come VSCode.
+						- Ho imparato molto di più da Shellcheck sulla programmazione bash che non dai libri o codici altrui.
 					</section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					<section class="small" data-background-image="assets/blwallpaper_dark_right.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-						Vai a destra
+						<img src="assets/shellcheck_ghcounts.png" alt="" style="width: 100vw;">
+						<img src="assets/shellcheck_ghcounts_vscode.png" alt="" style="width: 100vw;">
 					</section>
 				</section>
 

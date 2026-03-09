@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<title>Code Quality e Code Style</title>
 
@@ -13,6 +13,21 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.reveal .slides img.slide-img {
+				display: block;
+				margin: 1rem auto 0;
+				max-width: 95%;
+				max-height: 62vh;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+			}
+
+			.reveal .slides img.slide-img-sm {
+				max-height: 52vh;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -82,6 +97,9 @@
 					- Alcuni IDE applicano automaticamente le regole di Editor Config quando si salva un file, garantendo coerenza nel formato del codice (senza l'intervento manuale del programmatore).
 					- evita differenze inutili nei commit o strani conflitti
 					</section>
+					<section class="small">
+						<img src="assets/editorconfig_meme.jpg" alt="editorconfig_meme" class="slide-img">
+					</section>
 					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Esempio di file .editorconfig
@@ -132,6 +150,9 @@
 							```
 							<sup style="font-size: 0.4em;">ti rende così bello che ti abbassa l'età</sup>
 						</script>
+					</section>
+					<section class="small">
+						<img src="assets/ugly_meme.jpg" alt="prettier_meme" class="slide-img">
 					</section>
 					<section data-markdown class="small">
 						- Rendere più bello un codice tuttavia, soprattutto nei linguaggi interpretati, degrada le prestazioni e occupa spazio.
@@ -245,6 +266,9 @@
 							}
 						```
 					</section>
+					<section class="small">
+						<img src="assets/checkstyle_meme.jpg" alt="checkstyle_meme" class="slide-img">	
+					</section>
 					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
 						### Checkstyle non è opzionale
@@ -333,6 +357,9 @@
 						}
 						```
 					</section>
+					<section class="small">
+						<img src="assets/linter_meme.jpg" alt="linter_meme" class="slide-img">
+					</section> 
 					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
 						- La differenza nell'utilizzo di un editor di testo da un IDE è dato dall'integrazione di strumenti come il linter.
@@ -474,6 +501,9 @@
 						</ul>
 						<img src="assets/jacoco.png" alt="Jacoco" style="width: 100vw;">
 					</section>
+					<section class="small">
+						<img src="assets/coverage_meme.jpg" alt="coverage_meme" class="slide-img">
+					</section>
 					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 					data-background-size="contain" class="small" data-background-repeat="no-repeat">
 						- I nomi delle metriche possono essere diversi.
@@ -514,8 +544,7 @@
 						- Una volta installato si può collegare la build al server (tramite maven oppure jenkins)
 						- Esistono regole generiche, ma è possibile anche crearne di personalizzate.
 					</section>
-					<section class="small" data-markdown data-background-image="assets/blwallpaper_dark_right.png"
-					data-background-size="contain" data-background-repeat="no-repeat">
+					<section data-markdown class="small">
 						<script type="text/template">
 							- Config maven: 
 							```xml
@@ -533,6 +562,10 @@
 							```
 							- Seguire le indicazioni dell'azienda e del reparto IT per una giusta integrazione.
 						</script>
+					</section>
+					<section class="small" data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+						<img src="assets/sonarqube_meme.jpg" alt="Meme sonarqube" class="slide-img">
 					</section>
 				</section>
 				<section data-background-image="assets/blwallpaper_dark_down.png"
@@ -595,13 +628,11 @@
 					data-background-size="contain" data-background-repeat="no-repeat">
 					<h2>The End</h2>
 
-					<img src="assets/thanks.jpeg" alt="T.hanks">
-
-					<p>(T.hanks)</p>
+					<img src="assets/mib.png" alt="END" class="slide-img slide-img-sm">
 
 					<blockquote class="blockquote w-50 mx-auto">
-						<p class="mb-2 small text-light">Anche l'occhio vuole la sua parte! (anche se non parte)</p>
-						<footer class="blockquote-footer small mt-2"> D& G: Davide&Galati</footer>
+						<p class="mb-2 small text-light">Non è bello ciò che è bello, ma è bello ciò che parte!</p>
+						<footer class="blockquote-footer small mt-2"> D&amp;G <sub>Davide&amp;Galati</sub></footer>
 					</blockquote>
 				</section>
 			</div>

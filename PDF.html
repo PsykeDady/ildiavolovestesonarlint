@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://localhost:8000/?print-pdf -->
+<html lang="en" class="reveal-full-page reveal-print print-pdf"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Code Quality e Code Style</title>
+
+		<link rel="stylesheet" href="./PDF_files/reset.css">
+		<link rel="stylesheet" href="./PDF_files/reveal.css">
+		<link rel="stylesheet" href="./PDF_files/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="./PDF_files/monokai.css">
+		<style>
+			.reveal .text-start {
+				text-align: left !important;
+			}
+
+			.reveal .h5 {
+				font-size: 1.25rem;
+				line-height: 1.25;
+			}
+
+			.reveal .text-white-50 {
+				color: rgba(255, 255, 255, 0.75) !important;
+			}
+
+			.reveal .text-light {
+				color: #f8f9fa !important;
+			}
+
+			.reveal .m-5 {
+				margin: 3rem !important;
+			}
+
+			.reveal .mt-2 {
+				margin-top: 0.5rem !important;
+			}
+
+			.reveal .mb-2 {
+				margin-bottom: 0.5rem !important;
+			}
+
+			.reveal .mx-auto {
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			.reveal .w-50 {
+				width: 50% !important;
+			}
+
+			.reveal .small {
+				font-size: 0.7em;
+			}
+
+			.reveal :not(pre) > code {
+				padding: 0.1em 0.35em;
+				border-radius: 0.25rem;
+				color: #e685b5;
+				background-color: rgba(255, 255, 255, 0.08);
+				font-size: 0.85em;
+				font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			}
+
+			.reveal .blockquote {
+				margin: 1rem auto 0;
+				padding: 0.8rem 1rem;
+				border-left: 0.3rem solid rgba(255, 255, 255, 0.45);
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 0.2rem;
+				text-align: left;
+			}
+
+			.reveal .blockquote p {
+				margin: 0;
+				line-height: 1.35;
+			}
+
+			.reveal .blockquote-footer {
+				display: block;
+				margin-top: 0.4rem;
+				color: rgba(255, 255, 255, 0.75);
+				font-size: 0.7em;
+			}
+
+			.reveal .blockquote-footer::before {
+				content: "- ";
+			}
+
+			.reveal .slides img.slide-img {
+				display: block;
+				margin: 1rem auto 0;
+				max-width: 95%;
+				max-height: 62vh;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+			}
+
+			.reveal .slides img.slide-img-sm {
+				max-height: 52vh;
+			}
+
+			.reveal .slides img.slide-img-wide {
+				display: block;
+				margin: 1rem auto 0;
+				max-width: 100%;
+				max-height: 68vh;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+			}
+
+			html.print-pdf .reveal .slides img.slide-img,
+			html.print-pdf .reveal .slides img.slide-img-wide {
+				margin-top: 1.25rem;
+				max-height: 58%;
+			}
+
+			html.print-pdf .reveal .slides img.slide-img-sm {
+				max-height: 48%;
+			}
+		</style>
+	<style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><style type="text/css">@page{size:998px 728px; margin: 0px;}</style><style type="text/css">.reveal section>img, .reveal section>video, .reveal section>iframe{max-width: 960px; max-height:700px}</style></head>
+	<body class="reveal-viewport" style="--slide-width: 960px; --slide-height: 700px; width: 998px; height: 728px;">
+		<div class="reveal slide center focused has-vertical-slides has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade" style="cursor: none;">
+			<div class="slides">
+				
+
+				
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Il fatto che parta non è tutto</h3>
+					
+					
+					
+					
+					
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Editor Config</h3>
+					
+					
+					
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Prettier, ma anche Uglifier</h3>
+					
+					
+					
+					
+					
+					
+					
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Checkstyle</h3>
+					
+					
+					
+					
+
+					
+					
+					
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Linter</h3>
+					
+				
+					
+					
+					
+					 
+					
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Test</h3>
+					
+					
+					
+					
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Coverage</h3>
+					
+					
+					
+					
+					
+					
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Sonarqube</h3>
+					
+					
+					
+					
+					
+					
+					
+				</section>
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>An extra: Codacy </h3>
+					
+					
+					
+				</section>
+
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="stack present" style="display: block;">
+					<h3>Esempi tool</h3>
+					
+					
+					
+					
+				</section>
+
+				
+			<div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background present" data-background-hash="nullcontainassets/blwallpaper_dark.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" class="present" style="display: block; left: 19px; top: 266px; width: 960px;"><p class="text-start h5 text-white-50 m-5">&nbsp;<br>A cura di Davide Galati (in arte PsykeDady)<!-- --><br><a href="mailto:davide.galati@brainylabs.it" class="text-start h5 text-white-50 m-5">davide.galati@brainylabs.it</a><!-- --><br><a href="mailto:psdady@msn.com" class="text-start h5 text-white-50 m-5">psdady@msn.com</a><!-- -->  
+                    </p>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 48px; width: 960px;"><h3 id="link-e-info-presentazione">Link e info presentazione</h3>
+<ul>
+<li>Potete trovare la presentazione all'indirizzo
+<a href="http://ildiavolovestesonarlint.surge.sh/">ildiavolovestesonarlint.surge.sh</a></li>
+<li>Con il tasto ESC avrete una panoramica di tutte le slide (<em>non fatevi spoiler però!</em>)</li>
+<li>Aggiungendo <a href="http://ildiavolovestesonarlint.surge.sh/?print-pdf">?print-pdf</a> all'indirizzo potrete avere una
+versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).</li>
+<li>La presentazione si estende in <em>orizzontale</em> ma anche in <strong>verticale</strong>! Fare attenzione alle frecce
+<strong>a sinistra in basso</strong>.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" style="display: block; left: 19px; top: 287.5px; width: 960px;"><ul>
+<li>Se un codice non ha bug è un bene.</li>
+<li>Ma anche un progetto perfetto, se non è leggibile o mantenibile, lo possiamo buttare via.</li>
+<li>Esistono quindi delle buone pratiche per qualità e stile del codice.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 96.5px; width: 960px;"><ul>
+<li>Esiste un libro, How To Write Unmaintainable Code, che ironicamente spiega come scrivere codice non mantenibile, ma è un buon punto di partenza per capire cosa non fare.
+<img src="./PDF_files/unmaintainable_code.png" alt=""></li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 164px; width: 960px;"><p><img src="./PDF_files/unmaintainable_code2.png" alt="">
+                    </p>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 254.5px; width: 960px;"><h3 id="code-style">Code Style</h3>
+<ul>
+<li>Editor Config</li>
+<li>prettier</li>
+<li>checkstyle</li>
+<li>Linter (Lato style)</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" class="present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 184.5px; width: 960px;"><h3 id="code-quality">Code Quality</h3>
+<ul>
+<li>Linter (Lato quality)</li>
+<li>Coverage</li>
+<li>SonarQube </li>
+<li>esempi: Sonarlint</li>
+<li>esempi: ShellCheck</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 192px; width: 960px;"><ul>
+<li>Editor Config è un file di configurazione che permette di definire regole di formattazione del codice, come indentazione, spaziatura, fine linea, ecc.</li>
+<li>Anche se non è uno standard de-facto, è supportato da molti editor e IDE.</li>
+<li>Alcuni IDE applicano automaticamente le regole di Editor Config quando si salva un file, garantendo coerenza nel formato del codice (senza l'intervento manuale del programmatore).</li>
+<li>evita differenze inutili nei commit o strani conflitti</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 54px; width: 960px;">
+						<img src="./PDF_files/editorconfig_meme.jpg" alt="editorconfig_meme" class="slide-img">
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" class="present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 106px; width: 960px;"><h3 id="esempio-di-file-editorconfig">Esempio di file .editorconfig</h3>
+<pre class="code-wrapper"><code class="config hljs language-ini" data-highlighted="yes"><span class="hljs-attr">root</span> = <span class="hljs-literal">true</span>
+
+<span class="hljs-section">[*]</span>
+<span class="hljs-attr">end_of_line</span> = lf
+<span class="hljs-attr">insert_final_newline</span> = <span class="hljs-literal">true</span>
+<span class="hljs-attr">tab_width</span> = <span class="hljs-number">4</span>
+<span class="hljs-attr">indent_style</span> = space
+<span class="hljs-attr">indent_size</span> = <span class="hljs-number">4</span>
+
+<span class="hljs-comment"># Override per file JavaScript e CSS</span>
+<span class="hljs-section">[*.{js,css}]</span>
+<span class="hljs-attr">end_of_line</span> = lf
+<span class="hljs-attr">insert_final_newline</span> = <span class="hljs-literal">true</span>
+<span class="hljs-attr">indent_style</span> = tab
+<span class="hljs-attr">indent_size</span> = <span class="hljs-number">4</span></code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 230.5px; width: 960px;"><ul>
+<li>Per Prettier si intende un formattatore di codice, sia a livello di categoria che come software a specifico. </li>
+<li>Supporta molti linguaggi e può essere integrato in molti editor e IDE.</li>
+<li>Molto utilizzato soprattutto per Javascript e json.</li>
+<li>Esiste anche il concetto di "prettyprinting" nei vari linguaggi per stampare log o dati in modo più leggibile, ad esempio con indentazione e spaziatura tramite istruzioni.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 310px; width: 960px;"><ul>
+<li>Prima di Prettier</li>
+</ul>
+<pre class="code-wrapper"><code class="json hljs language-json" data-highlighted="yes"><span class="hljs-punctuation">{</span><span class="hljs-attr">"nome"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Davide"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"cognome"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Galati"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"eta"</span><span class="hljs-punctuation">:</span><span class="hljs-number">34</span><span class="hljs-punctuation">}</span></code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 242.5px; width: 960px;"><ul>
+<li>Dopo Prettier</li>
+</ul>
+<pre class="code-wrapper"><code class="json hljs language-json" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"nome"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Davide"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cognome"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Galati"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"eta"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">18</span>
+<span class="hljs-punctuation">}</span></code></pre><p><sup style="font-size: 0.4em;">ti rende così bello che ti abbassa l'età</sup>
+                        </p>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 22px; width: 960px;">
+						<img src="./PDF_files/ugly_meme.jpg" alt="prettier_meme" class="slide-img">
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 191.5px; width: 960px;"><ul>
+<li>Rendere più bello un codice tuttavia, soprattutto nei linguaggi interpretati, degrada le prestazioni e occupa spazio.</li>
+<li>Esistono quindi dei software che fanno l'opposto, lo rendono "illegibile" ma più performante, come Uglifier per Javascript.</li>
+<li>In questo caso, però, è importante mantenere una versione "leggibile" del codice, magari con un suffisso come <code>.min.js</code>, per poterlo manutenere in futuro.</li>
+<li>L'utilizzo di un Uglifier è in genere integrato nei processi di build per versioni di produzione.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 237px; width: 960px;"><ul>
+<li>Prima di Uglifier</li>
+</ul>
+<pre class="code-wrapper"><code class="javascript hljs language-javascript" data-highlighted="yes">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">calcolaSomma</span>(<span class="hljs-params">a, b</span>) {
+        <span class="hljs-keyword">return</span> a + b;
+    }</code></pre><ul>
+<li>Dopo Uglifier</li>
+</ul>
+<pre class="code-wrapper"><code class="javascript hljs language-javascript" data-highlighted="yes">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span>(<span class="hljs-params">a,b</span>){<span class="hljs-keyword">return</span> a+b}</code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" class="present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 200px; width: 960px;"><ul>
+<li>Lo devo leggere, mantenere, versionare? Prettifier</li>
+<li>Lo deve scaricare il browser? Uglifier</li>
+<li>Domanda: Installi Bootstrap ...<ul>
+<li>bootstrap.js</li>
+<li>bootstrap.min.js</li>
+</ul>
+</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 192px; width: 960px;"><ul>
+<li>Cambiamo paradigma: andiamo su un tool che rende lo stile obbligatorio, non solo suggerito.</li>
+<li>Checkstyle è uno strumento per il linguaggio Java, consente di impostare delle regole di stile che il programmatore DEVE seguire.</li>
+<li>Permette di definire delle regole personalizzate e garantire una metodologia standard all'interno di un azienda.</li>
+<li>Può essere integrato sia nel processo di build (attraverso maven ad esempio) che in molti IDE, per segnalare immediatamente eventuali violazioni delle regole.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 268.5px; width: 960px;"><ul>
+<li>Si parte normalmente dalle configurazioni del <a href="https://checkstyle.sourceforge.io/">sito ufficiale</a></li>
+<li>Nella documentazione è possibile trovare molte regole predefinite, ma è anche possibile crearne di personalizzate.</li>
+<li>Una volta trovata la giusta configurazione è importante condividerle e conservarle.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 116px; width: 960px;"><h3 id="esempio-di-pezzi-di-file-checkstylexml">Esempio di (pezzi di) file checkstyle.xml</h3>
+<pre class="code-wrapper"><code class="xml hljs language-xml" data-highlighted="yes">
+<span class="hljs-tag">&lt;<span class="hljs-name">module</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Checker"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"charset"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"UTF-8"</span>/&gt;</span>
+        <span class="hljs-comment">&lt;!-- lunghezza massima delle righe --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">module</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"LineLength"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"fileExtensions"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"java"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"max"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"100"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- obbliga le graffe negli if --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">module</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"NeedBraces"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tokens"</span>
+            <span class="hljs-attr">value</span>=<span class="hljs-string">"LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- naming delle classi --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">module</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"TypeName"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"format"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"^[A-Z][a-zA-Z0-9]*$"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tokens"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"CLASS_DEF"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- spazio attorno gli operatori --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">module</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"WhitespaceAround"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tokens"</span>
+            <span class="hljs-attr">value</span>=<span class="hljs-string">"ASSIGN, PLUS, MINUS, DIV, STAR, EQUAL, NOT_EQUAL"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span></code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 199.5px; width: 960px;"><h3 id="esempio-di-violazione-di-checkstyle">Esempio di violazione di checkstyle</h3>
+<pre class="code-wrapper"><code class="java hljs language-java" data-highlighted="yes">    <span class="hljs-comment">// Violazione naming classi</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">myClass</span> {
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+            <span class="hljs-comment">// Violazione spazi attorno agli operatori</span>
+            <span class="hljs-type">int</span> a=<span class="hljs-number">5</span>+<span class="hljs-number">3</span>;
+            <span class="hljs-comment">// Violazione parentesi negli if</span>
+            <span class="hljs-keyword">if</span>(a&gt;<span class="hljs-number">5</span>)
+                System.out.println(<span class="hljs-string">"a è maggiore di 5"</span>);
+            <span class="hljs-comment">// Violazione lunghezza massima delle righe</span>
+            System.out.println(<span class="hljs-string">"Questa è una riga molto lunga che supera i 100 caratteri e quindi viola la regola di checkstyle"</span>);		
+        }
+    }</code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 190px; width: 960px;"><h3 id="esempio-corretto">Esempio corretto</h3>
+<pre class="code-wrapper"><code class="java hljs language-java" data-highlighted="yes">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+            <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span> + <span class="hljs-number">3</span>;
+            <span class="hljs-keyword">if</span> (a &gt; <span class="hljs-number">5</span>) {
+                System.out.println(<span class="hljs-string">"a è maggiore di 5"</span>);
+            }
+            <span class="hljs-type">String</span> <span class="hljs-variable">longLine</span> <span class="hljs-operator">=</span>
+            <span class="hljs-string">"Questa è una riga "</span>
+                + <span class="hljs-string">"molto lunga che supera i 100 caratteri "</span>
+                + <span class="hljs-string">"ma non viola la regola di Checkstyle "</span>
+                + <span class="hljs-string">"perché è stata spezzata in più righe"</span>;
+        }
+    }</code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 3.5px; width: 960px;">
+						<img src="./PDF_files/checkstyle_meme.jpg" alt="checkstyle_meme" class="slide-img">	
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" class="present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 75.5px; width: 960px;"><h3 id="checkstyle-non-è-opzionale">Checkstyle non è opzionale</h3>
+<ul>
+<li>Non è un suggerimento</li>
+<li>Non è gusto personale</li>
+<li>Non è opinione</li>
+<li>È una regola automatica.</li>
+<li>Se non rispetti le regole: La build FALLISCE.</li>
+<li>(Attento ad usarla in combo con altri strumenti, ad esempio SonarQube, per evitare di avere troppe regole che si sovrappongono e confondono il programmatore)</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 249.5px; width: 960px;"><ul>
+<li>Usciamo dal mondo del solo stile. Il linter rappresenta quella linea di confine che tutela sia stile che qualità.</li>
+<li>Il Linter è uno strumento che analizza il codice sorgente per identificare errori, problemi di stile e potenziali bug.</li>
+<li>Esistono linters specifici per ogni linguaggio di programmazione, sono di norma integrati negli IDE.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 249.5px; width: 960px;"><ul>
+<li>"generalmente" non si scarica un linter, al più si installa un language server che include anche un linter, ma è possibile anche scaricare linters standalone.</li>
+<li>Markdown linter, shellcheck, eslint, pylint, sono solo alcuni esempi di linters per diversi linguaggi.</li>
+<li>Il linter da solo non garantisce che non ci siano errori.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 273.5px; width: 960px;"><h3 id="cosa-controlla-un-linter">Cosa controlla un Linter?</h3>
+<ul>
+<li>Errori sintattici</li>
+<li>Problemi di stile</li>
+<li>Pattern pericolosi</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 116px; width: 960px;"><h3 id="esempio-errore-java">Esempio errore java</h3>
+<pre class="code-wrapper"><code class="java hljs language-java" data-highlighted="yes"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Example1</span> {
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+
+        <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span>   
+        <span class="hljs-comment">// Syntax error: ';' expected</span>
+
+        <span class="hljs-type">int</span> <span class="hljs-variable">number</span> <span class="hljs-operator">=</span> <span class="hljs-string">"dieci"</span>;
+        <span class="hljs-comment">// Type mismatch: cannot convert from String to int</span>
+
+        <span class="hljs-type">String</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-string">"ciao"</span>;
+        <span class="hljs-type">String</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-string">"ciao"</span>;
+        <span class="hljs-keyword">if</span> (a == b) {
+        <span class="hljs-comment">// Warning: Strings should be compared using .equals(), not '=='</span>
+            System.out.println(<span class="hljs-string">"Uguali"</span>);
+        }
+
+        <span class="hljs-type">int</span> <span class="hljs-variable">unusedValue</span> <span class="hljs-operator">=</span> <span class="hljs-number">42</span>;
+        <span class="hljs-comment">// Warning: The value of the local variable 'unusedValue' is not used</span>
+    }
+}							</code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 116px; width: 960px;"><h3 id="il-linter-non-garantisce-lassenza-di-errori">Il linter non garantisce l'assenza di errori</h3>
+<pre class="code-wrapper"><code class="java hljs language-java" data-highlighted="yes"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleRuntimeErrors</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+        <span class="hljs-type">int</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> getNumber();
+
+        <span class="hljs-type">int</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> x / y;
+        <span class="hljs-comment">// Nessun errore di linting</span>
+        <span class="hljs-comment">// Nessun errore di compilazione</span>
+        <span class="hljs-comment">// Errore a runtime: java.lang.ArithmeticException: / by zero</span>
+
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> getName();
+
+        System.out.println(name.length());
+        <span class="hljs-comment">// Nessun errore di linting</span>
+        <span class="hljs-comment">// Nessun errore di compilazione</span>
+        <span class="hljs-comment">// Errore a runtime: java.lang.NullPointerException</span>
+    }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getNumber</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+}</code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 15.5px; width: 960px;">
+						<img src="./PDF_files/linter_meme.jpg" alt="linter_meme" class="slide-img">
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" class="present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 145.5px; width: 960px;"><ul>
+<li>La differenza nell'utilizzo di un editor di testo da un IDE è dato dall'integrazione di strumenti come il linter.</li>
+<li>Il linter precede il compilatore e ti evita la perdita di tempo nella compilazione di errori evidenti</li>
+<li>Tuttavia, nelle prime fasi di sviluppo, sconsiglio l'uso</li>
+<li>Sbagliare insegna anche a capire.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 211px; width: 960px;"><ul>
+<li>I test sono una delle armi più potenti degli sviluppatori.</li>
+<li>Proteggono dalle regressioni.</li>
+<li>Permettono di evolvere il codice senza paura.</li>
+<li>Automatizzano la verifica del comportamento.</li>
+<li>Un buon setup dei test (con adeguati mock realistici) consente di avere un ottima affidabilità sul risultato del test ed indipendenza da servizi o elementi esterni (dynamo, Aws)</li>
+<li>Se il test dipende dall'ambiente, non è un buon test</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 139px; width: 960px;"><pre class="code-wrapper"><code class="java hljs language-java" data-highlighted="yes"><span class="hljs-meta">@BeforeAll</span>
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">CheckedAlertsRepository</span> <span class="hljs-variable">checkedAlertsRepository</span> <span class="hljs-operator">=</span> Mockito.mock(CheckedAlertsRepository.class);
+    <span class="hljs-type">TTLRepository</span> <span class="hljs-variable">ttlRepository</span> <span class="hljs-operator">=</span> Mockito.mock(TTLRepository.class);
+
+    <span class="hljs-type">Alert</span> <span class="hljs-variable">alertToBeChecked</span> <span class="hljs-operator">=</span> Alert.builder()
+        .id(<span class="hljs-number">10543L</span>)
+        .ruleCode(<span class="hljs-string">"A4"</span>)
+        .customerCode(<span class="hljs-string">"999999011"</span>)
+        .description(<span class="hljs-string">"L alert consente di verificare l adeguatezza del cliente"</span>)
+        .creationDate(Date.valueOf(<span class="hljs-string">"2023-10-01"</span>))
+        .build();
+    checked = List.of(
+        Alert.builder()
+            .id(<span class="hljs-number">10386L</span>)
+            .ruleCode(<span class="hljs-string">"A1"</span>)
+            .customerCode(<span class="hljs-string">"778046609"</span>)
+            .description(
+                <span class="hljs-string">"Rileva l'avvicinamento alla data di scadenza del questionario MiFID del Cliente. Esiti declinati in funzione del numero di giorni alla scadenza"</span>)
+            .creationDate(Date.valueOf(<span class="hljs-string">"2023-10-01"</span>))
+            .build(),
+        Alert.builder()
+            .id(<span class="hljs-number">10499L</span>)
+            .ruleCode(<span class="hljs-string">"A1"</span>)
+            .customerCode(<span class="hljs-string">"999999019"</span>)
+            .description(
+                <span class="hljs-string">"Rileva l'avvicinamento alla data di scadenza del questionario MiFID del Cliente. Esiti declinati in funzione del numero di giorni alla scadenza"</span>)
+            .creationDate(Date.valueOf(<span class="hljs-string">"2023-11-13"</span>))
+            .build(),
+        alertToBeChecked);
+
+    Mockito.<span class="hljs-keyword">when</span>(checkedAlertsRepository.listCheckedAlerts(Mockito.anyString())).thenReturn(checked);
+    Mockito.<span class="hljs-keyword">when</span>(ttlRepository.getTTL(Mockito.anyString(), Mockito.anyString())).thenReturn(<span class="hljs-literal">null</span>);
+
+    Mockito.<span class="hljs-keyword">when</span>(checkedAlertsRepository.checkAlert(Mockito.anyString(), Mockito.anyString(),
+        Mockito.any(), Mockito.anyLong())).thenReturn(alertToBeChecked);
+
+    QuarkusMock.installMockForType(checkedAlertsRepository, CheckedAlertsRepository.class);
+    QuarkusMock.installMockForType(ttlRepository, TTLRepository.class);
+}</code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 194px; width: 960px;"><ul>
+<li>I Test:</li>
+</ul>
+<pre class="code-wrapper"><code class="java hljs language-java" data-highlighted="yes"><span class="hljs-meta">@Test</span>
+<span class="hljs-meta">@SneakyThrows</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">testPostCheckedWithoutCustomer</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">ObjectWriter</span> <span class="hljs-variable">ow</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectMapper</span>().writer().withDefaultPrettyPrinter();
+
+    <span class="hljs-type">String</span> <span class="hljs-variable">jsonBody</span> <span class="hljs-operator">=</span> ow.writeValueAsString(
+        Alert.builder().id(<span class="hljs-number">10543L</span>).build());
+
+    given()
+        .header(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Header</span>(<span class="hljs-string">"Content-Type"</span>, APPLICATION_JSON)).body(jsonBody)
+        .<span class="hljs-keyword">when</span>().post(BASEURL)
+        .then().statusCode(HttpURLConnection.HTTP_BAD_REQUEST);
+}</code></pre></section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" class="present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 145.5px; width: 960px;"><ul>
+<li>Esistono varie suite di test </li>
+<li>ELENCARE SUITE </li>
+<li>non ne esiste una giusta e sbagliata, gusti e comodità </li>
+<li>La tattica vincente è progettare i test prima ancora del codice<ul>
+<li>Nella realtà non avrai il tempo. RIP</li>
+</ul>
+</li>
+<li>L'utilizzo dell'ATE aiuta molto</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 268.5px; width: 960px;"><ul>
+<li>Il concetto di Coverage è collegato ai test.</li>
+<li>I test sono fondamentali per garantire la qualità del codice, ma non basta scriverli, bisogna anche assicurarsi che siano efficaci.</li>
+<li>La coverage è una metrica che misura la percentuale di codice sorgente che viene eseguita durante l'esecuzione dei test.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 230.5px; width: 960px;"><ul>
+<li>Ci son diversi tipi di coverage:</li>
+<li>Line Coverage ovvero <strong>quante righe</strong> vengono eseguite</li>
+<li>Branch Coverage ovvero <strong>quanti rami</strong> decisionali vengono testati</li>
+<li>Method, Class Coverage ovvero <strong>quanti metodi e classi</strong> vengono chiamati</li>
+<li>Condition Coverage ovvero <strong>quante condizioni</strong> logiche vengono valutate</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 97.5px; width: 960px;"><ul>
+<li>Ci son ovviamente diversi tool per misurare la coverage, ad esempio Jacoco per Java.</li>
+<li>Basta inserire il plugin in maven <pre class="code-wrapper"><code class="xml hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.jacoco<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jacoco-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.8.11<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">executions</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">execution</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">goals</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">goal</span>&gt;</span>prepare-agent<span class="hljs-tag">&lt;/<span class="hljs-name">goal</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">goals</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">execution</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">execution</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>report<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">phase</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">phase</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">goals</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">goal</span>&gt;</span>report<span class="hljs-tag">&lt;/<span class="hljs-name">goal</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">goals</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">execution</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">executions</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span></code></pre></li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 162px; width: 960px;">
+						<ul>
+							<li>Dopo un <code>mvn clean test</code> è possibile trovare il report di Jacoco in <code>target/site/jacoco/index.html</code></li>
+						</ul>
+						<img src="./PDF_files/jacoco.png" alt="Jacoco" class="slide-img-wide">
+					</section></div><div class="pdf-page" style="height: 1454px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 14px; width: 960px;">
+						<img src="./PDF_files/coverage_meme.jpg" alt="coverage_meme" class="slide-img">
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" class="small present" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 192px; width: 960px;"><ul>
+<li>I nomi delle metriche possono essere diversi.</li>
+<li>Nel report JaCoCo trovi: Instructions Coverage,Branch Coverage,Complexity (Cxty),Lines,Methods,Classes</li>
+<li>Istruction sarebbe la line coverage, ovvero quante istruzioni vengono eseguite, è la più importante.</li>
+<li>Branch è la branch coverage, ovvero quanti rami decisionali vengono testati.</li>
+<li>La complexity è simile alla condition coverage, ovvero quante condizioni logiche vengono valutate.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 230.5px; width: 960px;"><ul>
+<li>SonarQube è una piattaforma di analisi statica del codice.</li>
+<li>Centralizza metriche di qualità, coverage e vulnerabilità.</li>
+<li>Si integra con CI/CD e con repository Git (puoi implementare meccanismi che bloccano merge o build se la severità delle issue è alta).</li>
+<li>Alcuni linters, come SonarLint, si basano sulle regole di SonarQube per fornire feedback in tempo reale durante la scrittura del codice.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 202.5px; width: 960px;"><h4 id="cosa-analizza-sonarqube">Cosa analizza SonarQube?</h4>
+<ul>
+<li>Bug</li>
+<li>Vulnerabilità</li>
+<li>Code Smell (cattivo odore del codice, codice non errato ma non di qualità, tipo checkstyle)</li>
+<li>Coverage</li>
+<li>Duplicazione di codice</li>
+<li>Complessità</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 120px; width: 960px;">
+						<img src="./PDF_files/sonarqube_mivplus.png" alt="" class="slide-img-wide">
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 150px; width: 960px;">
+						<img src="./PDF_files/sonarqube_mivplus2.png" alt="" class="slide-img-wide">
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 268.5px; width: 960px;"><ul>
+<li>Il server di sonarqube deve essere installato e configurato.</li>
+<li>Una volta installato si può collegare la build al server (tramite maven oppure jenkins)</li>
+<li>Esistono regole generiche, ma è possibile anche crearne di personalizzate.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 160px; width: 960px;"><ul>
+<li>Config maven:</li>
+</ul>
+<pre class="code-wrapper"><code class="xml hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.sonarsource.scanner.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>sonar-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.9.1.2184<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>	</code></pre><ul>
+<li>maven command</li>
+</ul>
+<pre class="code-wrapper"><code class="bash hljs language-bash" data-highlighted="yes">mvn clean verify sonar:sonar -Dsonar.projectKey=nomeprogetto
+-Dsonar.host.url=http://localhost:9000
+-Dsonar.login=token</code></pre><ul>
+<li>Seguire le indicazioni dell'azienda e del reparto IT per una giusta integrazione.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section class="small present" data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 64.5px; width: 960px;">
+						<img src="./PDF_files/sonarqube_meme.jpg" alt="Meme sonarqube" class="slide-img">
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 249.5px; width: 960px;"><ul>
+<li>Codacy è una piattaforma di analisi del codice che offre funzionalità simili a SonarQube, ma con un focus particolare sull'integrazione continua e sulla facilità d'uso.</li>
+<li>Con sede in Portogallo, non è molto diffusa, si lega bene a Github e soprattutto: ci lavora un amico :D </li>
+<li>È una soluzione <strong>cloud</strong>, semplice da configurare.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 132px; width: 960px;"><ul>
+<li><p>Codacy:</p>
+<ul>
+<li>SaaS (cloud)</li>
+<li>Setup rapido</li>
+<li>Integrazione GitHub immediata</li>
+</ul>
+</li>
+<li><p>SonarQube:</p>
+<ul>
+<li>Installabile on-premise</li>
+<li>Più configurabile</li>
+<li>Più diffuso in ambito enterprise</li>
+</ul>
+</li>
+<li><p><a href="https://www.codacy.com/blog/codacy-vs-sonarqube/">Codacy vs SonarQube</a></p>
+</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section class="small present" data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 211px; width: 960px;"><ul>
+<li>Codacy dimostra che esistono alternative a SonarQube, ma è importante valutare attentamente le esigenze del progetto e dell'azienda prima di scegliere una piattaforma di analisi del codice.</li>
+<li>Gratis per progetti open source, ma a pagamento per progetti privati (con prezzi che variano in base al numero di utenti e alla quantità di codice analizzato).</li>
+<li>Plugin con vscode</li>
+<li><a href="https://www.codacy.com/pricing">Pricing</a></li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small present" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" style="display: block; left: 19px; top: 202.5px; width: 960px;"><h4 id="sonarlint">Sonarlint</h4>
+<ul>
+<li>SonarLint (oggi SonarQube for IDE su VSCode) è un'estensione per IDE che fornisce feedback in tempo reale sulla qualità del codice, basandosi sulle regole standard di SonarQube.</li>
+<li>Supporta vari linguaggi e IDE, come Java, JavaScript, Python, etc..</li>
+<li>può essere collegato ad un server di SonarQube per sincronizzare le regole e le issue, ma funziona anche in modalità standalone.</li>
+<li>Attivalo.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 253.5px; width: 960px;">
+						<img src="./PDF_files/sonarlint_testUser.png" alt="" class="slide-img-wide">
+					</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-loaded="true" style="display: block;"><div class="slide-background-content"></div></div><section class="small present" data-markdown="" data-markdown-parsed="true" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 202.5px; width: 960px;"><h4 id="shellcheck">ShellCheck</h4>
+<ul>
+<li>ShellCheck è uno strumento di analisi statica per script shell, che aiuta a individuare errori comuni e potenziali problemi di sicurezza.</li>
+<li>Se lavori in bash, è un must have! </li>
+<li>è possibile utilizzarlo da linea di comando ma anche integrarlo in editor come VSCode.</li>
+<li>Ho imparato molto di più da Shellcheck sulla programmazione bash che non dai libri o codici altrui.</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background small future" data-background-hash="nullcontainassets/blwallpaper_dark_right.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_right.png&quot;);"></div></div><section class="small present" data-background-image="assets/blwallpaper_dark_right.png" data-background-size="contain" data-background-repeat="no-repeat" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 104.5px; width: 960px;">
+						<img src="./PDF_files/shellcheck_ghcounts.png" alt="" class="slide-img-wide">
+						<img src="./PDF_files/shellcheck_ghcounts_vscode.png" alt="" class="slide-img-wide">
+					</section></div><div class="pdf-page" style="height: 1454px; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(25, 25, 25);"><div class="slide-background future" data-background-hash="nullcontainassets/blwallpaper_dark.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark.png&quot;);"></div></div><section data-background-image="assets/blwallpaper_dark.png" data-background-size="contain" data-background-repeat="no-repeat" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;">
+					<h2>The End</h2>
+
+					<img src="./PDF_files/mib.png" alt="END" class="slide-img slide-img-sm">
+
+					<blockquote class="blockquote w-50 mx-auto">
+						<p class="mb-2 small text-light">Non è bello ciò che è bello, ma è bello ciò che parte!</p>
+						<footer class="blockquote-footer small mt-2"> D&amp;G <sub>Davide&amp;Galati</sub></footer>
+					</blockquote>
+				</section></div></div>
+		<div class="backgrounds"><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div><div class="slide-background stack future" data-background-hash="nullcontainassets/blwallpaper_dark_down.pngnullnullnullnullno-repeatnullnullnull" data-background-size="contain" data-loaded="true" style="display: block;"><div class="slide-background-content" style="background-size: contain; background-repeat: no-repeat; background-image: url(&quot;assets/blwallpaper_dark_down.png&quot;);"></div></div></div><div class="slide-number" style="display: none;"></div><aside class="controls" data-controls-layout="bottom-right" data-controls-back-arrows="faded" style="display: block;"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right enabled" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down enabled highlight" aria-label="below slide"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div class="aria-status" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);">A cura di Davide Galati (in arte PsykeDady) davide.galati@brainylabs.it psdady@msn.com. </div></div>
+
+		<script src="./PDF_files/reveal.js"></script>
+		<script src="./PDF_files/notes.js"></script>
+		<script src="./PDF_files/markdown.js"></script>
+		<script src="./PDF_files/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	<script src="./PDF_files/livereload.js" async="" defer=""></script>
+
+</body></html>

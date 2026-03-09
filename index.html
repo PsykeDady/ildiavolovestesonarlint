@@ -9,11 +9,86 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/black.css">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 		<style>
+			.reveal .text-start {
+				text-align: left !important;
+			}
+
+			.reveal .h5 {
+				font-size: 1.25rem;
+				line-height: 1.25;
+			}
+
+			.reveal .text-white-50 {
+				color: rgba(255, 255, 255, 0.75) !important;
+			}
+
+			.reveal .text-light {
+				color: #f8f9fa !important;
+			}
+
+			.reveal .m-5 {
+				margin: 3rem !important;
+			}
+
+			.reveal .mt-2 {
+				margin-top: 0.5rem !important;
+			}
+
+			.reveal .mb-2 {
+				margin-bottom: 0.5rem !important;
+			}
+
+			.reveal .mx-auto {
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			.reveal .w-50 {
+				width: 50% !important;
+			}
+
+			.reveal .small {
+				font-size: 0.7em;
+			}
+
+			.reveal :not(pre) > code {
+				padding: 0.1em 0.35em;
+				border-radius: 0.25rem;
+				color: #e685b5;
+				background-color: rgba(255, 255, 255, 0.08);
+				font-size: 0.85em;
+				font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			}
+
+			.reveal .blockquote {
+				margin: 1rem auto 0;
+				padding: 0.8rem 1rem;
+				border-left: 0.3rem solid rgba(255, 255, 255, 0.45);
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 0.2rem;
+				text-align: left;
+			}
+
+			.reveal .blockquote p {
+				margin: 0;
+				line-height: 1.35;
+			}
+
+			.reveal .blockquote-footer {
+				display: block;
+				margin-top: 0.4rem;
+				color: rgba(255, 255, 255, 0.75);
+				font-size: 0.7em;
+			}
+
+			.reveal .blockquote-footer::before {
+				content: "- ";
+			}
+
 			.reveal .slides img.slide-img {
 				display: block;
 				margin: 1rem auto 0;
@@ -26,6 +101,36 @@
 
 			.reveal .slides img.slide-img-sm {
 				max-height: 52vh;
+			}
+
+			.reveal .slides img.slide-img-wide {
+				display: block;
+				margin: 1rem auto 0;
+				max-width: 100%;
+				max-height: 68vh;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+			}
+
+			html.print-pdf .reveal .slides img.slide-img,
+			html.print-pdf .reveal .slides img.slide-img-wide {
+				margin-top: 1.25rem;
+				max-height: 58%;
+			}
+
+			html.print-pdf .reveal .slides img.slide-img-sm {
+				max-height: 48%;
+			}
+
+			html.print-pdf .reveal .slides section img {
+				display: block;
+				margin: 0.5rem auto 0 !important;
+				max-width: 100% !important;
+				max-height: 52% !important;
+				width: auto !important;
+				height: auto !important;
+				object-fit: contain;
 			}
 		</style>
 	</head>
@@ -57,8 +162,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Il fatto che parta non è tutto</h3>
 					<section data-markdown class="small">
+					### Il fatto che parta non è tutto
+
 					- Se un codice non ha bug è un bene.
 					- Ma anche un progetto perfetto, se non è leggibile o mantenibile, lo possiamo buttare via.
 					- Esistono quindi delle buone pratiche per qualità e stile del codice.
@@ -90,8 +196,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Editor Config</h3>
 					<section data-markdown class="small">
+					### Editor Config
+
 					- Editor Config è un file di configurazione che permette di definire regole di formattazione del codice, come indentazione, spaziatura, fine linea, ecc.
 					- Anche se non è uno standard de-facto, è supportato da molti editor e IDE.
 					- Alcuni IDE applicano automaticamente le regole di Editor Config quando si salva un file, garantendo coerenza nel formato del codice (senza l'intervento manuale del programmatore).
@@ -125,8 +232,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Prettier, ma anche Uglifier</h3>
 					<section data-markdown class="small">
+					### Prettier, ma anche Uglifier
+
 					- Per Prettier si intende un formattatore di codice, sia a livello di categoria che come software a specifico. 
 					- Supporta molti linguaggi e può essere integrato in molti editor e IDE.
 					- Molto utilizzato soprattutto per Javascript e json.
@@ -184,8 +292,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Checkstyle</h3>
 					<section data-markdown class="small">
+						### Checkstyle
+
 						- Cambiamo paradigma: andiamo su un tool che rende lo stile obbligatorio, non solo suggerito.
 						- Checkstyle è uno strumento per il linguaggio Java, consente di impostare delle regole di stile che il programmatore DEVE seguire.
 						- Permette di definire delle regole personalizzate e garantire una metodologia standard all'interno di un azienda.
@@ -284,8 +393,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Linter</h3>
 					<section data-markdown class="small">
+					### Linter
+
 					- Usciamo dal mondo del solo stile. Il linter rappresenta quella linea di confine che tutela sia stile che qualità.
 					- Il Linter è uno strumento che analizza il codice sorgente per identificare errori, problemi di stile e potenziali bug.
 					- Esistono linters specifici per ogni linguaggio di programmazione, sono di norma integrati negli IDE.
@@ -371,8 +481,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Test</h3>
 					<section data-markdown class="small">
+						### Test
+
 						- I test sono una delle armi più potenti degli sviluppatori.
 						- Proteggono dalle regressioni.
 						- Permettono di evolvere il codice senza paura.
@@ -455,8 +566,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Coverage</h3>
 					<section data-markdown class="small">
+						### Coverage
+
 						- Il concetto di Coverage è collegato ai test.
 						- I test sono fondamentali per garantire la qualità del codice, ma non basta scriverli, bisogna anche assicurarsi che siano efficaci.
 						- La coverage è una metrica che misura la percentuale di codice sorgente che viene eseguita durante l'esecuzione dei test.
@@ -499,7 +611,7 @@
 						<ul>
 							<li>Dopo un <code>mvn clean test</code> è possibile trovare il report di Jacoco in <code>target/site/jacoco/index.html</code></li>
 						</ul>
-						<img src="assets/jacoco.png" alt="Jacoco" style="width: 100vw;">
+						<img src="assets/jacoco.png" alt="Jacoco" class="slide-img-wide">
 					</section>
 					<section class="small">
 						<img src="assets/coverage_meme.jpg" alt="coverage_meme" class="slide-img">
@@ -516,8 +628,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Sonarqube</h3>
 					<section data-markdown class="small">
+						### Sonarqube
+
 						- SonarQube è una piattaforma di analisi statica del codice.
 						- Centralizza metriche di qualità, coverage e vulnerabilità.
 						- Si integra con CI/CD e con repository Git (puoi implementare meccanismi che bloccano merge o build se la severità delle issue è alta).
@@ -534,10 +647,10 @@
 						- Complessità
 					</section>
 					<section class="small">
-						<img src="assets/sonarqube_mivplus.png" alt="" style="width: 100vw;">
+						<img src="assets/sonarqube_mivplus.png" alt="" class="slide-img-wide">
 					</section>
 					<section class="small">
-						<img src="assets/sonarqube_mivplus2.png" alt="" style="width: 100vw;">
+						<img src="assets/sonarqube_mivplus2.png" alt="" class="slide-img-wide">
 					</section>
 					<section data-markdown class="small">
 						- Il server di sonarqube deve essere installato e configurato.
@@ -570,8 +683,9 @@
 				</section>
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>An extra: Codacy </h3>
 					<section data-markdown class="small">
+						### An extra: Codacy
+
 						- Codacy è una piattaforma di analisi del codice che offre funzionalità simili a SonarQube, ma con un focus particolare sull'integrazione continua e sulla facilità d'uso.
 						- Con sede in Portogallo, non è molto diffusa, si lega bene a Github e soprattutto: ci lavora un amico :D 
 						- È una soluzione **cloud**, semplice da configurare.
@@ -599,8 +713,9 @@
 
 				<section data-background-image="assets/blwallpaper_dark_down.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Esempi tool</h3>
 					<section data-markdown class="small">
+						### Esempi tool
+
 						#### Sonarlint
 						- SonarLint (oggi SonarQube for IDE su VSCode) è un'estensione per IDE che fornisce feedback in tempo reale sulla qualità del codice, basandosi sulle regole standard di SonarQube.
 						- Supporta vari linguaggi e IDE, come Java, JavaScript, Python, etc..
@@ -608,7 +723,7 @@
 						- Attivalo.
 					</section>
 					<section class="small">
-						<img src="assets/sonarlint_testUser.png" alt="" style="width: 100vw;">
+						<img src="assets/sonarlint_testUser.png" alt="" class="slide-img-wide">
 					</section>
 					<section data-markdown class="small">
 						#### ShellCheck
@@ -619,8 +734,8 @@
 					</section>
 					<section class="small" data-background-image="assets/blwallpaper_dark_right.png"
 						data-background-size="contain" data-background-repeat="no-repeat">
-						<img src="assets/shellcheck_ghcounts.png" alt="" style="width: 100vw;">
-						<img src="assets/shellcheck_ghcounts_vscode.png" alt="" style="width: 100vw;">
+						<img src="assets/shellcheck_ghcounts.png" alt="" class="slide-img-wide">
+						<img src="assets/shellcheck_ghcounts_vscode.png" alt="" class="slide-img-wide">
 					</section>
 				</section>
 
